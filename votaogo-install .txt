@@ -1,0 +1,47 @@
+vatogo install command
+@channel instructions for environment setup:
+- clone https://scm.spaysy.com/vatogo/m2-vatogo / ssh://git@scm.spaysy.com:2222/vatogo/m2-vatogo.git
+- run composer install
+- copy env.php and config.php under app/etc
+- check db connection details on env.php (might need to remove the redis info if you don't have it installed)
+- restore the dump
+- update the base url in core_config_data
+- you are ready to work: old template will be under vendor/vatogo/theme-frontend-base, new one where you will have to work under vendor/vatogo/theme-frontend-sushi
+=================================
+start following in your pc:
+=================================
+git clone clone https://scm.spaysy.com/vatogo/m2-vatogo
+sudo chmod -R 777 m2-vatogo/
+sudo chown www-data:www-data . -R
+sudo -uwww-data php bin/magento
+php bin/magento cache:flush
+copy 'media' folder to "m2-vatogo/pub":
+file permission false git command
+git config core.fileMode false
+php bin/magento admin:user:create \
+   --admin-user="tga.farid" \
+   --admin-password="tga1234567" \
+   --admin-email="farid@tgalimited.com" \
+   --admin-firstname="farid" \
+   --admin-lastname="Ahmed"
+php install:
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.1
+
+sudo apt-get install php7.1-gd
+sudo apt-get install php7.1-curl
+sudo apt-get install php7.1-intl
+sudo apt-get install php7.1-mbstring
+sudo apt-get install php7.1-zip 
+sudo apt-get install php7.1-mbstring
+sudo apt-get install php7.1-mysqli
+sudo apt-get install php7.1-xml
+sudo apt-get install php7.1-dom
+sudo apt-get install php7.1-mcrypt
+sudo apt-get install php7.1-soap
+sudo apt-get install php7.1-mysql
+sudo apt-get install php7.1-mysql
+=======================================
+file permission false git command
+git config core.fileMode false
