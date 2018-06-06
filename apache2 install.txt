@@ -1,0 +1,4 @@
+sudo apt-get install apache2 -y
+sudo apache2ctl stop
+sudo apache2ctl start
+sudo apache2ctl restart
