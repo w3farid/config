@@ -1,0 +1,4 @@
+sudo apt-get install php5 php5-curl php5-gd php5-imagick php5-imap php5-mcrypt php5-mysql -y
+sudo apt-get install php-pear php5-memcache -y
+sudo apt-get install libapache2-mod-php5 -y
+php -v
