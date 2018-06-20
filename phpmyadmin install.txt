@@ -1,0 +1,2 @@
+sudo apt-get install phpmyadmin
+// go to ip/localhost/phpmyadmin 
