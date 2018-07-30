@@ -1,0 +1,95 @@
+find wifi ip address
+ubuntu:
+run ifconfig
+step:1 ::create apache different domain configuration
+=========================================================
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/vatogo.local.conf
+
+step:2 ::write root folder location and server
+alias to conf file
+=========================================================
+sudo nano  /etc/apache2/sites-available/vatogo.local.conf
+
+	      ServerAdmin admin@vatogo.local
+        ServerName vatogo.local
+        ServerAlias www.vatogo.local
+        DocumentRoot /var/www/html/m2-vatogo/pub
+
+        <Directory /var/www/html/m2-vatogo/pub">
+                  AllowOverride All
+        </Directory>
+        
+        demo example: 
+<VirtualHost    192.168.101.31:8088>
+        
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+        ServerAdmin admin@vatogo.local
+        ServerName vatogo.local
+        ServerAlias www.vatogo.local
+        DocumentRoot /var/www/html/m2-vatogo/pub
+        <Directory /var/www/html/m2-vatogo/pub>
+                AllowOverride All
+        </Directory>
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        
+</VirtualHost>
+=========================================================
+step:3 ::enable site domain in local
+=========================================================
+cd /etc/apache2/sites-available
+sudo a2ensite vatogo.local.conf
+sudo service apache2 restart
+
+=========================================================
+step:4 ::write to host file ip and domain
+=========================================================
+
+sudo nano /etc/hosts
+
+example:
+192.168.101.31       vatogo.local
+=========================================================
+step:4 ::create project folder, if project exist not
+necessary this step
+=========================================================
+if no project not exist on html www
+cd /var/www/html/
+sudo mkdir hayatuzzaman
+cd hayatuzzaman/
+touch index.html
+sudo touch index.html
+sudo nano index.html
+sudo service apache2 reload
+sudo service apache2 restart
+-----------------------------------
+=========================================================
+step:5 :: configure apache file
+=========================================================
+sudo nano /etc/apache2/apache2.conf
+
+write following text with location:
+
+<Directory /var/www/html/m2-vatogo/pub/>
+        AllowOverride All
+</Directory>
+
+sudo service apache2 restart
+=========================================================
+step:6:: apache rewrite mood enable
+=========================================================
+if this command not run on this machine
+sudo a2enmod rewrite
+
+=============================================================
+********* open specific port and run project   **********
+=============================================================
+nano /etc/apache2/ports.conf
+
+add this line
+------------
+Listen 8088
+
+nano /etc/apache2/sites-available/000-default.conf
+
