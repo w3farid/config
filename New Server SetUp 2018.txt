@@ -1,0 +1,357 @@
+Live Server Setup
+
+Environment Installation: 
+==============================================================
+Install Apache 
+==============================================================
+•	Apache
+o	sudo apt-get update
+o	sudo apt-get install apache2
+
+
+after opening this file write down your server name “ServerName server_domain_or_IP” at end of the file 
+When you are finished, save and close the file by pressing Ctrl-X. You'll have to confirm the save by typing Y and then hit Enter to confirm the file save location.
+
+o	 sudo service apache2 restart
+o	sudo ufw app list
+
+Output will be show as follows - 
+Available applications:
+  Apache 
+  Apache full
+  Apache Secure
+  Open SSH
+
+From that output, select Apache Full using below command
+
+o	sudo ufw app info "Apache Full"
+o	sudo ufw allow in "Apache Full"
+o	sudo service apache2 restart
+
+after completing this process write down your server IP address as follow: 
+
+o	http://your_server_IP_address 
+==============================================================
+Install PHP
+==============================================================
+	PHP 
+	=====if new install php 7===
+	sudo apt-get install curl php7.0 libapache7.0-mod-php7.0 php7.0-mcrypt php7.0-mysql php7.0-mbstring
+	=====end if new install php 7===
+	
+sudo apt-get install zip unzip php7.0-zip
+
+	== if old php version exist ==
+	sudo apt-get update
+	sudo add-apt-repository ppa:ondrej/php
+	sudo apt-get update
+	sudo apt-get install php7.0
+	sudo apt-get update
+	sudo apt-get install php7.0-mysql libapache2-mod-php7.0
+	sudo a2dismod php5
+	sudo service apache2 restart
+	sudo a2enmod php7.0
+	sudo service apache2 restart
+
+php 7.1 install:
+
+
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.1
+
+
+sudo apt-get install php7.1-gd
+sudo apt-get install php7.1-curl
+sudo apt-get install php7.1-intl
+sudo apt-get install php7.1-mbstring
+sudo apt-get install php7.1-zip 
+sudo apt-get install php7.1-mbstring
+sudo apt-get install php7.1-mysqli
+sudo apt-get install php7.1-xml
+sudo apt-get install php7.1-dom
+sudo apt-get install php7.1-mcrypt
+sudo apt-get install php7.1-soap
+sudo apt-get install php7.1-mysql
+sudo apt-get install php7.1-mysql
+
+
+
+
+Install PHP 7.2
+
+sudo apt install -y python-software-properties
+sudo add-apt-repository -y ppa:ondrej/php
+sudo apt update -y
+
+sudo apt install -y php7.2 libapache2-mod-php7.2 php7.2-cli php7.2-common php7.2-mbstring php7.2-gd php7.2-intl php7.2-xml php7.2-mysql php7.2-zip php7.2-fpm php7.2-bcmath php7.2-curl
+
+==============================================================
+	curl install 7.50.0
+==============================================================
+	sudo apt-get build-dep curl
+	wget https://curl.haxx.se/download/curl-7.50.0.tar.gz
+	tar -xvf curl-7.50.0.tar.gz
+	cd curl-7.50.0
+	./configure --prefix=/usr
+	make
+	sudo make install
+	sudo ldconfig
+
+	///// optional commands if version not change ///////
+	-----one command-------
+	./configure --prefix=/usr                           \
+            --disable-static                        \
+            --enable-threaded-resolver              \
+            --with-ca-path=/etc/ssl/certs &&
+	make
+	-----one command-------
+
+	again command:
+	make
+
+	-----one command-------
+	sudo make install &&
+
+	rm -rf docs/examples/.deps &&
+
+	find docs \( -name Makefile\* \
+		  -o -name \*.1       \
+		  -o -name \*.3 \)    \
+		  -exec rm {} \;      &&
+	install -v -d -m755 /usr/share/doc/curl-7.50.0 &&
+	cp -v -R docs/*     /usr/share/doc/curl-7.50.0
+	-----one command-------
+
+	sudo service apache2 restart
+	sudo apt-get install curl
+	sudo apt-get install libcurl
+	sudo apt-get install php-curl
+	///// end optional commands if version not change ///////
+
+
+	apt-get update
+	apt-get install php7.0-curl
+	wget https://curl.haxx.se/download/curl-7.50.0.tar.gz
+	tar -xvf curl-7.50.0.tar.gz
+	cd curl-7.50.0
+	cd curl-7.39.0 # enter the directory where curl was unpacked
+	./buildconf
+	./configure
+	make
+	make install
+	mv /usr/bin/curl /usr/bin/curl.bak
+	cp /usr/local/bin/curl /usr/bin/curl
+	service apache2 restart
+
+	sudo apt-get install php7.0-fpm
+	service apache2 restart
+	service php5-fpm restart
+
+	curl-config --version
+
+
+link: http://www.linuxfromscratch.org/blfs/view/cvs/basicnet/curl.html
+	
+
+
+==============================================================
+Install Mysql server
+==============================================================
+•	MySql server
+	=== if old mysql server set up then type version==
+	sudo apt-get purge mysql-client-core-5.6
+	sudo apt-get install mysql-client-core-5.7
+
+	=== if new pc set up===
+	sudo apt-get update
+	sudo apt-get install mysql-server-5.6
+	===end if new pc set up===
+
+
+	GRANT ALL PRIVILEGES
+	ON yourdatabasename.*
+	TO 'your_username'@'%'
+	IDENTIFIED BY 'your_password';
+
+	mysql> GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+	GRANT ALL ON *.* TO your_username@'%' IDENTIFIED BY 'password';
+
+
+	mysql -u your_username -p -h your_ip
+
+	GRANT ALL ON *.* to your_username@'%' IDENTIFIED BY 'password';
+
+	CREATE USER 'your_username'@'%' IDENTIFIED BY 'password';
+
+	GRANT ALL ON yourdatabasename.* TO root@'%' IDENTIFIED BY 'password';
+
+	mysql 5.7 bind address commented
+	/etc/mysql/mysql.conf.d/mysqld.cnf 
+
+	connect from anywhere
+	mysql -u your_username -p -h your_ip
+
+
+	allow mysql port
+	https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04
+
+	useful links
+	https://askubuntu.com/questions/301034/cannot-open-port
+	https://stackoverflow.com/questions/8348506/grant-remote-access-of-mysql-database-from-any-ip-address
+	https://serverfault.com/questions/782118/mysql-5-7-bind-address-doesnt-work
+
+==============================================================
+Install phpmyadmin
+==============================================================
+•	PHP my admin
+o	sudo apt-get update
+o	sudo apt-get install phpmyadmin
+o	sudo phpenmod mcrypt
+	
+	=== after updating php version ==
+	sudo apt-get install php7.0-mbstring
+
+~~      After opening the file 
+        nano /etc/apache2/apache2.conf
+        Add this one at the end of the file 
+        Include /etc/phpmyadmin/apache.conf
+o	sudo service apache2 restart
+
+You can now access the web interface by visiting your server's domain name or public IP address followed by /phpmyadmin:
+
+o	https://domain_name_or_IP/phpmyadmin 
+
+
+Development tools:
+==============================================================
+Install Node js, NPM
+==============================================================
+•	Node js, NPM
+o	curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+o	sudo apt-get install -y nodejs
+o	sudo apt-get install -y build-essential
+==============================================================
+Step 6: Install Git
+==============================================================
+•	Git
+o	sudo apt install git
+o	git config --global user.email "h.u.zaman@gmail.com"
+o	git config --global user.name "Hayat"
+==============================================================
+Install Composer
+==============================================================
+•	Composer 
+o	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+Project tools:
+•	Laravel 
+
+Helping server: 
+==============================================================
+Install Redis 
+==============================================================
+•	Redis 
+o	sudo apt-get update
+o	sudo apt-get install build-essential
+o	sudo apt-get install tcl8.5
+o	wget http://download.redis.io/releases/redis-stable.tar.gz
+o	tar xzf redis-stable.tar.gz
+o	cd redis-stable
+o	make
+o	make test
+o	sudo make install
+o	cd utils
+o	sudo ./install_server.sh
+for start redis using this
+o	sudo service redis_6379 start
+for stop redis using this
+o	sudo service redis_6379 stop
+You can then access the redis database by typing the following command:
+o	redis-cli
+You now have Redis installed and running. The prompt will look like this:
+o	redis 127.0.0.1:6379> 
+To set Redis to automatically start at boot, run:
+o	sudo update-rc.d redis_6379 defaults
+==============================================================
+Install Elastic search
+==============================================================
+•	Elastic search 
+Installing OpenJDK
+
+First of all update the list of available packages for installation on your Ubuntu Droplet by running the command:
+
+o	sudo apt-get update
+
+After that, you can install OpenJDK with the command:
+
+o	sudo apt-get install openjdk-7-jre
+
+To verify your JRE is installed and can be used, run the command:
+
+o	sudo apt-get update
+        java –version
+
+The result should look like this:
+       java version "1.7.0_79"
+       OpenJDK Runtime Environment (IcedTea 2.5.6) (7u79-2.5.6-0ubuntu1.14.04.1)
+       OpenJDK 64-Bit Server VM (build 24.79-b02, mixed mode)
+
+Installing Java 8
+Add the Oracle Java PPA to apt:
+
+o	sudo add-apt-repository -y ppa:webupd8team/java
+
+Update your apt package database:
+
+o	sudo apt-get update
+
+Install the latest stable version of Oracle Java 8 with this command (and accept the license agreement that pops up):
+
+o	sudo apt-get -y install oracle-java8-installer
+
+Lastly, verify it is installed:
+
+o	java -version
+
+
+At the time of this writing, the latest Elasticsearch version is 1.7.2. Download it in a directory of your choosing with the command:
+
+	sudo wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.0.deb
+
+Then install it in the usual Ubuntu way with the dpkg command like this:
+
+	sudo dpkg -i elasticsearch-5.5.0.deb
+	sudo update-rc.d elasticsearch defaults
+        sudo service elasticsearch start
+
+=== if old elastic search install there ==
+sudo /etc/init.d/elasticsearch status
+sudo /etc/init.d/elasticsearch stop
+sudo /etc/init.d/elasticsearch start
+
+sudo update-rc.d -f elasticsearch remove
+sudo update-rc.d elasticsearch defaults
+sudo nano /etc/elasticsearch/elasticsearch.yml
+sudo service elasticsearch restart
+sudo update-rc.d elasticsearch enable
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+sudo update-rc.d elasticsearch defaults 95 10
+sudo service elasticsearch restart
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

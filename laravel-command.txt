@@ -1,0 +1,34 @@
+-------$ php artisan migrate:fresh --seed
+-------$ php artisan migrate:fresh
+-------$ php artisan make:model Answer 
+-------$ php artisan db:seed
+============----------------replace fm_api file -------------===============
+dir: Extra_files> within vendor file
+-------------install driver sqlite --------------------
+sudo apt-get install php7.1-sqlite3
+
+
+//====================test server login =============//
+ssh freemig-dst-01@103.85.112.76
+
+root server pass
+!@tgalimited2018rootSERVER#$
+
+
+
+
+//==============test server login mysql======================
+mysql pass
+!@tgalimited2018#$
+
+mysql username
+root
+
+//================rename git remote orgin =================
+git remote rename origin old-origin
+git remote add origin https://gitlab.com/thisishayat/backend-oxygen-operator.git
+
+
+//===============auth connection modify=======================
+var/www/html/fm-auth/vendor/elasticsearch/elasticsearch/src/Elasticsearch/Connections/Connection.php
+$this->host             = '103.85.112.76:9200';
