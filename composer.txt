@@ -1,0 +1,6 @@
+
+     "repositories": {
+        "packagist": { "url": "https://packagist.org", "type": "composer" }
+    },
+    
+    
