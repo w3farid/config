@@ -1,0 +1,25 @@
+https://nazimkuet.wordpress.com/2014/07/14/how-can-i-configure-tomcat-with-multiple-virtual-hosts/
+https://tecadmin.net/create-virtualhost-in-tomcat/
+
+Deploy CTrendsEBS in tomcat-8 on Centos 7				
+========================================= 				
+Steps:									
+=====
+Step 1: Update your CentOS system
+Step 2: Install Java
+Step 3: Create a dedicated user for Apache Tomcat
+Step 3: Create a dedicated user for Apache Tomcat
+Step 4: Download and install the latest apache-tomcat-8.5.23 
+Step 5: Setup proper permissions
+Step 6: Setup a Systemd unit file for Apache Tomcat Service
+Step 7: (Optional) For security purposes, you should install haveged
+Step 8:  Start the Apache Tomcat service and set it run on system boot
+Step 9: Enable firewall for remote excess
+Step 10: Test your installation of Apache Tomcat by visiting the following URL from a web browser
+Step 11: Configure the Apache Tomcat web management interface (User and password)
+Step 12: Login web management interface and deploy your own application
+Step 13: Connect tomcat to PostgreSQL database
+Step 14: Database with user information (View or change)
+Step 15: port configuration
+
+https://linuxize.com/post/how-to-install-tomcat-8-5-on-centos-7/
