@@ -1,0 +1,18 @@
+1. first install laravel
+2. npm install 
+3. npm install vue-resource --save
+4. npm install laravel-elixir-vue-2 --save-dev
+5. npm run dev
+
+5. php artisan serve
+-> php artisan make:auth
+6. npm run watch
+
+app.js
+-------------
+1. window.Vue = require('vue');
+2. var Vue = require('vue');
+3. Vue.use(require('vue-resource'));
+4. Vue.http.headers.common['X-CSRF-TOKEN']=$('meta[name="csrf-token"]');
+
+
