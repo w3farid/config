@@ -4,12 +4,12 @@ Environment Installation:
 ==============================================================
 Install Apache 
 ==============================================================
-ï	Apache
+‚Ä¢	Apache
 o	sudo apt-get update
 o	sudo apt-get install apache2
 
 
-after opening this file write down your server name ìServerName server_domain_or_IPî at end of the file 
+after opening this file write down your server name ‚ÄúServerName server_domain_or_IP‚Äù at end of the file 
 When you are finished, save and close the file by pressing Ctrl-X. You'll have to confirm the save by typing Y and then hit Enter to confirm the file save location.
 
 o	 sudo service apache2 restart
@@ -158,7 +158,7 @@ link: http://www.linuxfromscratch.org/blfs/view/cvs/basicnet/curl.html
 ==============================================================
 Install Mysql server
 ==============================================================
-ï	MySql server
+‚Ä¢	MySql server
 	=== if old mysql server set up then type version==
 	sudo apt-get purge mysql-client-core-5.6
 	sudo apt-get install mysql-client-core-5.7
@@ -200,11 +200,32 @@ Install Mysql server
 	https://askubuntu.com/questions/301034/cannot-open-port
 	https://stackoverflow.com/questions/8348506/grant-remote-access-of-mysql-database-from-any-ip-address
 	https://serverfault.com/questions/782118/mysql-5-7-bind-address-doesnt-work
+	
+	===========password change===========
+	1.if you in skip-grant-tables mode
+	in mysqld_safe:
+
+	UPDATE mysql.user SET authentication_string=null WHERE User='root';
+	FLUSH PRIVILEGES;
+	exit;
+
+	and then, in terminal:
+
+	mysql -u root
+
+	in mysql:
+
+	ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'yourpasswd';
+
+	2.not in skip-grant-tables mode
+	just in mysql:
+
+	ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'yourpasswd';
 
 ==============================================================
 Install phpmyadmin
 ==============================================================
-ï	PHP my admin
+‚Ä¢	PHP my admin
 o	sudo apt-get update
 o	sudo apt-get install phpmyadmin
 o	sudo phpenmod mcrypt
@@ -227,31 +248,31 @@ Development tools:
 ==============================================================
 Install Node js, NPM
 ==============================================================
-ï	Node js, NPM
+‚Ä¢	Node js, NPM
 o	curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 o	sudo apt-get install -y nodejs
 o	sudo apt-get install -y build-essential
 ==============================================================
 Step 6: Install Git
 ==============================================================
-ï	Git
+‚Ä¢	Git
 o	sudo apt install git
 o	git config --global user.email "h.u.zaman@gmail.com"
 o	git config --global user.name "Hayat"
 ==============================================================
 Install Composer
 ==============================================================
-ï	Composer 
+‚Ä¢	Composer 
 o	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 Project tools:
-ï	Laravel 
+‚Ä¢	Laravel 
 
 Helping server: 
 ==============================================================
 Install Redis 
 ==============================================================
-ï	Redis 
+‚Ä¢	Redis 
 o	sudo apt-get update
 o	sudo apt-get install build-essential
 o	sudo apt-get install tcl8.5
@@ -276,7 +297,7 @@ o	sudo update-rc.d redis_6379 defaults
 ==============================================================
 Install Elastic search
 ==============================================================
-ï	Elastic search 
+‚Ä¢	Elastic search 
 Installing OpenJDK
 
 First of all update the list of available packages for installation on your Ubuntu Droplet by running the command:
@@ -290,7 +311,7 @@ o	sudo apt-get install openjdk-7-jre
 To verify your JRE is installed and can be used, run the command:
 
 o	sudo apt-get update
-        java ñversion
+        java ‚Äìversion
 
 The result should look like this:
        java version "1.7.0_79"
