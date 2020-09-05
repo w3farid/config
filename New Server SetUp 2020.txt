@@ -249,7 +249,7 @@ Development tools:
 Install Node js, NPM
 ==============================================================
 •	Node js, NPM
-o	curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+o	curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
 o	sudo apt-get install -y nodejs
 o	sudo apt-get install -y build-essential
 ==============================================================
