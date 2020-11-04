@@ -1,0 +1,6 @@
+-- flutter build
+- flutter clean
+- Open pubspec.yaml and just make a simple change and SAVE file
+- flutter pub cache repair
+- flutter build apk --split-per-abi
+
