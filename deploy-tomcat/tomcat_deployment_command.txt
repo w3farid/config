@@ -1,0 +1,115 @@
+java path set: https://www.youtube.com/watch?v=bEaWqHIuc4w
+
+link for tomcat setup and create service: https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7
+1. sudo groupadd tomcat9003
+2. sudo useradd -M -s /bin/nologin -g tomcat9003 -d /opt/tomcat9003 tomcat9003
+3. sudo tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat9003 --strip-components=1
+4. sudo chgrp -R tomcat9003 /opt/tomcat9003
+5. sudo chmod -R g+r conf
+6. sudo chmod g+x conf
+7. sudo chown -R tomcat9003 webapps/ work/ temp/ logs/
+8. sudo vi /etc/systemd/system/tomcat9003.service
+
+# Systemd unit file for tomcat
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/jre
+Environment=CATALINA_PID=/opt/tomcat9003/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat9003
+Environment=CATALINA_BASE=/opt/tomcat9003
+Environment='CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC'
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+ExecStart=/opt/tomcat9003/bin/startup.sh
+ExecStop=/bin/kill -15 $MAINPID
+
+User=tomcat9003
+Group=tomcat9003
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+9. sudo systemctl daemon-reload
+10. sudo systemctl start tomcat
+11. sudo systemctl status tomcat
+12. sudo systemctl enable tomcat
+
+PostgreSQL::
+dnf module list postgresql
+sudo dnf module enable postgresql:12
+sudo dnf install postgresql-server
+sudo postgresql-setup --initdb
+sudo systemctl start postgresql
+password change: passwd postgres
+su - postgres
+psql -c "ALTER USER postgres WITH PASSWORD 'cts@123456';"
+https://www.tecmint.com/install-postgressql-and-pgadmin-in-centos-8/
+ALTER USER postgres WITH PASSWORD 'cts@123456';
+
+postgres path from preferences: https://www.enterprisedb.com/edb-docs/d/postgresql/reference/manual/$VERSION$/
+
+https://www.postgresql.org/docs/$VERSION$/
+
+psql -U postgres -d postgres -c "alter user produser with password 'produser';"
+
+tomcat permission: sudo chmod 777 -R tomcat
+
+
+sudo systemctl start tomcat9001.service
+sudo systemctl start tomcat9002.service
+sudo systemctl start tomcat9003.service
+sudo systemctl start tomcat9005.service
+
+sudo systemctl status tomcat9001.service
+sudo systemctl status tomcat9002.service
+sudo systemctl status tomcat9003.service
+sudo systemctl status tomcat9005.service
+
+sudo systemctl stop tomcat9001.service
+sudo systemctl stop tomcat9002.service
+sudo systemctl stop tomcat9003.service
+sudo systemctl stop tomcat9005.service
+
+port allow: 
+sudo firewall-cmd --zone=public --add-port=9005/tcp --permanent
+sudo firewall-cmd --reload
+
+webserver:
+sudo dnf update -y
+sudo dnf install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+Mariadb:
+sudo dnf install -y mariadb-server
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+sudo mysql_secure_installation
+
+php install:
+sudo dnf install -y php php-common php-pdo_mysql php-pdo php-gd php-mbstring
+sudo systemctl restart httpd
+sudo dnf install -y perl perl-Net-SSLeay openssl perl-Encode-Detect
+
+webmin:
+wget http://www.webmin.com/download/rpm/webmin-current.rpm
+sudo rpm -U webmin-current.rpm
+
+firewall:
+sudo firewall-cmd --permanent --add-port=1000/tcp
+sudo firewall-cmd --permanent --add-port=80/tcp
+sudo firewall-cmd --reload
+
+
+systemctl --type=service
+
+
+
+Running dnf repolist all will show you all the repos on your system, including the disabled ones. Then you can copy/paste the exact repo id. If you are fully updated on CentOS Stream, the command should be dnf config-manager --set-enabled powertools.
